@@ -1,5 +1,6 @@
 import {v4 as uuidV4} from 'uuid'
 import { ICategoresRepository, IRequestCreateRepositoryDTO } from './ICategoriesRepository'
+import { Category } from '../model/Category'
 export class CategoriesRepositories implements ICategoresRepository{
     private categories:Category[] = []
     constructor(categories:Category [] = []){}

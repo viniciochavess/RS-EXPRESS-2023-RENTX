@@ -1,7 +1,8 @@
 import {Router} from 'express'
-import {v4 as uuidV4} from 'uuid'
-import { CategoriesRepositories } from '../repositories/categoriesRepository'
-import { CreateCategoryService } from '../services/Create-category-service'
+import { Category } from '../module/cars/model/Category'
+import { CategoriesRepositories } from '../module/cars/repositories/CategoriesRepository'
+import { CreateCategoryService } from '../module/cars/services/Create-category-service'
+
 
 
 

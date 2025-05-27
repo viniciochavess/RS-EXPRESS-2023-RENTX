@@ -1,4 +1,4 @@
-import { ICategoresRepository , IRequestCreateRepositoryDTO} from "../repositories/ICategoriesRepository"
+import { ICategoresRepository, IRequestCreateRepositoryDTO } from "../repositories/ICategoriesRepository"
 
 
 

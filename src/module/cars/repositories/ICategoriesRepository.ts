@@ -1,3 +1,5 @@
+import { Category } from "../model/Category"
+
 export interface IRequestCreateRepositoryDTO{
     name:string,
     description:string
