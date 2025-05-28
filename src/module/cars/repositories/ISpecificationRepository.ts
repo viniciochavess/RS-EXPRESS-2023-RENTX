@@ -7,5 +7,6 @@ export interface IRequestCreateSpecificationDTO {
 export interface ISpecificationRepository {
     create({description,name}:IRequestCreateSpecificationDTO): Specification
     findByName(name:string): Specification | null
+    all():Specification[]
 
 }

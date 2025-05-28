@@ -22,6 +22,9 @@ export class SpecificationsRepository implements ISpecificationRepository{
       const specificationAlwaredExist = this.SpecificationRepisitory.find( specification => specification.name == name)
       return specificationAlwaredExist ? specificationAlwaredExist : null
     }
+    all(): Specification[] {
+        return this.SpecificationRepisitory
+    }
 
     
 }

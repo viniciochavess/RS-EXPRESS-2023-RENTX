@@ -23,5 +23,5 @@ specificationRoutes.post("", async (request,response)=>{
 })
 
 specificationRoutes.get("", async(request,response)=>{
-    response.send("hi")
+    response.json(specificationRepository.all())
 })

@@ -5,6 +5,7 @@ export class CategoriesRepositories implements ICategoresRepository{
     private categories:Category[] = []
     constructor(categories:Category [] = []){}
     create({ description, name }: IRequestCreateRepositoryDTO): Category {
+    
         const newCategory:Category = {
             id: uuidV4(),
             name,
