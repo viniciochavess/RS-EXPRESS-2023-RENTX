@@ -1,0 +1,80 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Rentx API",
+    "version": "1.0.0",
+    "description": "API para gerenciamento de categorias e especificações"
+  },
+  "paths": {
+    "/categories": {
+      "post": {
+        "summary": "Criar uma nova categoria",
+        "tags": ["Categorias"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "SUV"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Categoria de carros utilitários esportivos"
+                  }
+                },
+                "required": ["name", "description"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Categoria criada com sucesso"
+          },
+          "400": {
+            "description": "Dados inválidos"
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "post": {
+        "summary": "Criar uma nova especificação",
+        "tags": ["Especificações"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Freios ABS"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Sistema de freios antitravamento"
+                  }
+                },
+                "required": ["name", "description"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Especificação criada com sucesso"
+          },
+          "400": {
+            "description": "Dados inválidos"
+          }
+        }
+      }
+    }
+  }
+}
