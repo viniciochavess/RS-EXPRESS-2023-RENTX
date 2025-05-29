@@ -3,7 +3,15 @@ import { ICategoresRepository, IRequestCreateRepositoryDTO } from './ICategories
 import { Category } from '../model/Category'
 export class CategoriesRepositories implements ICategoresRepository{
     private categories:Category[] = []
-    constructor(categories:Category [] = []){}
+    private constructor(categories:Category [] = []){}
+    private static INSTANCE:CategoriesRepositories
+
+    public static getInstance():CategoriesRepositories{
+        if(!CategoriesRepositories.INSTANCE){
+            CategoriesRepositories.INSTANCE = new CategoriesRepositories()
+        }
+        return CategoriesRepositories.INSTANCE
+    }
     create({ description, name }: IRequestCreateRepositoryDTO): Category {
     
         const newCategory:Category = {
