@@ -1,13 +1,17 @@
-import {Router} from 'express'
+import {request, Router} from 'express'
 import { createCategoryMake } from '../module/cars/factory/create-category-make'
 import { listCategoryMake } from '../module/cars/factory/list-category-make'
-
+import multer from 'multer'
+import { ImportFileCategoryController } from '../module/cars/controllers/import-file-category-controller'
+import { importFileCategoryMake } from '../module/cars/factory/import-file-category-make'
 
 
 
 export const categoriesRoutes = Router()
 
-
+const upload = multer({
+    dest:"./tmp"
+})
 
 const CreateCategoryMake =  createCategoryMake()
 const ListCategoryMake = listCategoryMake()
@@ -31,4 +35,17 @@ categoriesRoutes.get("", (request, response) =>{
     const list = ListCategoryMake.handle(request,response)
     response.json(list)
     
+})
+
+
+categoriesRoutes.post("/import",upload.single("file"),(request,response)=>{
+   const controller = importFileCategoryMake()
+
+   try {
+       controller.handle(request,response)
+       response.send("ok")
+    
+   } catch (error) {
+    
+   }
 })
