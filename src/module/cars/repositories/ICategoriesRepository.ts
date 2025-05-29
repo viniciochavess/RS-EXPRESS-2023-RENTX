@@ -8,5 +8,6 @@ export interface IRequestCreateRepositoryDTO{
 export interface ICategoresRepository {
     create({description,name}:IRequestCreateRepositoryDTO):Category | null
     findByName(name:string):Category | null
+    list():Category[] | null
 
 }

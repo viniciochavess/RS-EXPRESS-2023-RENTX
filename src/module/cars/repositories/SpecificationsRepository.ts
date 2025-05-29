@@ -4,7 +4,16 @@ import { IRequestCreateSpecificationDTO, ISpecificationRepository } from './ISpe
 
 export class SpecificationsRepository implements ISpecificationRepository{
     private SpecificationRepisitory:Specification[] = []
-    constructor(SpecificationRepisitory:Specification [] = []){}
+    private static INSTANCE:SpecificationsRepository
+
+    public static getInstance():SpecificationsRepository{
+      if(!SpecificationsRepository.INSTANCE){
+        SpecificationsRepository.INSTANCE = new SpecificationsRepository()
+        return SpecificationsRepository.INSTANCE
+      }
+      return SpecificationsRepository.INSTANCE
+    }
+    private constructor(SpecificationRepisitory:Specification [] = []){}
 
     create({ description, name }: IRequestCreateSpecificationDTO): Specification {
        const newSpecification:Specification = {
