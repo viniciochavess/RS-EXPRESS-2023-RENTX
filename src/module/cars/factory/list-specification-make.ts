@@ -3,7 +3,7 @@ import { SpecificationsRepository } from "../repositories/SpecificationsReposito
 import { CreateSpecificationService } from "../services/create-specification-service";
 
 export function listSpecificationMake(){
-    const repo =  SpecificationsRepository.getInstance()
+    const repo = new SpecificationsRepository()
     const sut = new CreateSpecificationService(repo)
     const cont = new CreateSpecificationController(sut)
     return cont

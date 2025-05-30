@@ -9,5 +9,5 @@ export const AppDataSource = new DataSource({
   database: 'rentx',
   entities: ['./src/modules/**/entities/*.ts'],
   migrations: ['./src/database/migrations/*.ts'],
-  synchronize: false
+  synchronize: false,
 });

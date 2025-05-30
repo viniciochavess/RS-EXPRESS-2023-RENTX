@@ -5,7 +5,7 @@ export class CreateSpecificationController{
     constructor(private sut:CreateSpecificationService){}
     handle(request:Request, response:Response){
             const{name,description} = request.body
-           const result = this.sut
+           const result = this.sut.execute({name,description})
            return result
     }
 }

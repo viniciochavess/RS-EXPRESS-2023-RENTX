@@ -3,7 +3,7 @@ import { CategoriesRepositories } from "../repositories/CategoriesRepository";
 import { ImportFileCategoryService } from "../services/import-file-category-service";
 
 export function importFileCategoryMake(){
-    const repo = CategoriesRepositories.getInstance()
+    const repo = new CategoriesRepositories()
     const sut = new ImportFileCategoryService(repo)
     const cont = new ImportFileCategoryController(sut)
     return cont

@@ -1,38 +1,27 @@
 import { v4 } from 'uuid'
 import { Specification } from '../model/Specification'
 import { IRequestCreateSpecificationDTO, ISpecificationRepository } from './ISpecificationRepository'
+import { prisma } from '../../../database/prisma'
 
 export class SpecificationsRepository implements ISpecificationRepository{
-    private SpecificationRepisitory:Specification[] = []
-    private static INSTANCE:SpecificationsRepository
 
-    public static getInstance():SpecificationsRepository{
-      if(!SpecificationsRepository.INSTANCE){
-        SpecificationsRepository.INSTANCE = new SpecificationsRepository()
-        return SpecificationsRepository.INSTANCE
-      }
-      return SpecificationsRepository.INSTANCE
-    }
-    private constructor(SpecificationRepisitory:Specification [] = []){}
-
-    create({ description, name }: IRequestCreateSpecificationDTO): Specification {
-       const newSpecification:Specification = {
-        id:v4(),
-        name,
-        description,
-        createdAt: new Date()
-
-       }
-
-       this.SpecificationRepisitory.push(newSpecification)
+    async create({ description, name }: IRequestCreateSpecificationDTO): Promise<Specification> {
+        const newSpecification = await prisma.specification.create({
+          data:{
+            description,
+            name
+          }
+        })
        return newSpecification
     }
-    findByName(name: string): Specification | null {
-      const specificationAlwaredExist = this.SpecificationRepisitory.find( specification => specification.name == name)
-      return specificationAlwaredExist ? specificationAlwaredExist : null
+    async findByName(name: string): Promise<Specification | null> {
+     const specification =  await prisma.specification.findFirst({
+      where:{name}
+     })
+     return specification ?? null
     }
-    all(): Specification[] {
-        return this.SpecificationRepisitory
+    async all(): Promise<Specification[]> {
+        return await prisma.specification.findMany()
     }
 
     

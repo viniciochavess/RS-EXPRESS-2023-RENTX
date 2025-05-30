@@ -3,6 +3,7 @@ import { categoriesRoutes } from "./routes/categories.routes";
 import { specificationRoutes } from "./routes/specifications.routes";
 import swaggerUi from 'swagger-ui-express'
 import swaggerFile from './swagger.json'
+import "reflect-metadata";
 import "./database"
 const app = express()
 

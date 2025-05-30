@@ -1,4 +1,5 @@
-import { Category } from "../model/Category"
+import { Category } from "../../../database/entities/Categories"
+
 
 export interface IRequestCreateRepositoryDTO{
     name:string,
@@ -6,8 +7,8 @@ export interface IRequestCreateRepositoryDTO{
 }
 
 export interface ICategoresRepository {
-    create({description,name}:IRequestCreateRepositoryDTO):Category | null
-    findByName(name:string):Category | null
-    list():Category[] | null
+    create({description,name}:IRequestCreateRepositoryDTO):Promise<Category | null>
+    findByName(name:string):Promise <Category | null>
+    list():Promise<Category[] | null>
 
 }

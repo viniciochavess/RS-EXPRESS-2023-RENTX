@@ -16,6 +16,7 @@ const upload = multer({
 const CreateCategoryMake =  createCategoryMake()
 const ListCategoryMake = listCategoryMake()
 categoriesRoutes.post("", async (request, response) =>{
+    
 
     try {
         const result  = await CreateCategoryMake.handle(request,response)

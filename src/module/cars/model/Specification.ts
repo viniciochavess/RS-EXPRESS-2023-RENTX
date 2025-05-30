@@ -1,7 +1,7 @@
 export type Specification = {
 
-    id:string;
+    id?:string;
     name:string;
     description:string;
-    createdAt: Date;
+    createdAt?: Date;
 }

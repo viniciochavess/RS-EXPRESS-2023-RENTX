@@ -1,38 +1,27 @@
-import {v4 as uuidV4} from 'uuid'
-import { ICategoresRepository, IRequestCreateRepositoryDTO } from './ICategoriesRepository'
-import { Category } from '../model/Category'
-export class CategoriesRepositories implements ICategoresRepository{
-    private categories:Category[] = []
-    private constructor(categories:Category [] = []){}
-    private static INSTANCE:CategoriesRepositories
 
-    public static getInstance():CategoriesRepositories{
-        if(!CategoriesRepositories.INSTANCE){
-            CategoriesRepositories.INSTANCE = new CategoriesRepositories()
-        }
-        return CategoriesRepositories.INSTANCE
-    }
-    create({ description, name }: IRequestCreateRepositoryDTO): Category {
+import { ICategoresRepository, IRequestCreateRepositoryDTO } from './ICategoriesRepository';
+import { Category } from '../../../database/entities/Categories';
+import { prisma } from '../../../database/prisma';
+
+export class CategoriesRepositories implements ICategoresRepository {
     
-        const newCategory:Category = {
-            id: uuidV4(),
-            name,
+    async create({ description, name }: IRequestCreateRepositoryDTO):Promise <Category | null> {
+        const category = await prisma.category.create({data:{
             description,
-            createdAt: new Date()
-        }
-        this.categories.push(newCategory)
-        return newCategory
+            name
+        }})
+        return category
     }
-
-    list():Category[]{
-        return this.categories
+    async findByName(name: string):Promise<Category | null> {
+        const category = await prisma.category.findFirst({
+            where:{name}
+        })
+        return category ?? null
     }
-
-    findByName(name:string):Category | null{
-        const categoryAlwaredExist = this.categories.find( category => category.name == name)
-        return categoryAlwaredExist ? categoryAlwaredExist : null
+    async list(): Promise<Category[] | null> {
+       
+        const categories = await prisma.category.findMany()
+        return categories
     }
-
-    
-    
+ 
 }
