@@ -39,4 +39,13 @@ export class RepositoriesUsers implements IRepositoriesUsers {
        return list ?? null
     }
 
+    async updateAvatarFile(avatar_file:string,user_id:string):Promise<Users | null>{
+        const user = await prisma.users.update({
+            data:{
+                avatar:avatar_file
+            },where:{id:user_id}
+        })
+        return user ?? null
+    }
+
 }

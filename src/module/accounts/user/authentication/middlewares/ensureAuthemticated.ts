@@ -11,6 +11,9 @@ export async function ensureAuthemticated(request:Request, response:Response, ne
 
     try{
         const {sub} = verify(token, "lkajsdkjaksjdlkajsdkajsd") as IPayload
+        request.user = {
+            id: sub
+        }
         next()
     }catch(error){
         throw new Error("tokken inválido")
